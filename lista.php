@@ -12,4 +12,5 @@
     echo($myJSON);
     die();
     //file_put_contents('lista.json', $myJSON);
+    //zmiana na potrzeby github
 ?>
