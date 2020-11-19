@@ -11,6 +11,4 @@
     $myJSON = json_encode($myObj);
     echo($myJSON);
     die();
-    //file_put_contents('lista.json', $myJSON);
-    //zmiana na potrzeby github
 ?>
