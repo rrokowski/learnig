@@ -1,4 +1,5 @@
 <?php
+    //generowanie listy fakerem
     require_once '/Applications/AMPPS/www/pagingJSON/vendor/autoload.php';
 
     $faker = Faker\Factory::create();
@@ -7,10 +8,6 @@
     for ($i = 0; $i < 50; $i++) {
         $myObj[] = ['id'=>$faker->unique()->numberBetween(1,1000), 'name'=>$faker->name, 'email'=>$faker->email];         
     };
-    print_r($myObj);
-    //$myJSON = json_encode($myObj);
-
-    //echo($myJSON);
     
     //połączenie z mysql
     $host = 'localhost';
@@ -27,7 +24,6 @@
     mysqli_query($conn, $removeTable);
 
     //wgrywanie danych do tabeli users
-
     if (is_array($myObj)) {
         foreach ($myObj as $row => $value) {
         $id = mysqli_real_escape_string($conn, $value["id"]);

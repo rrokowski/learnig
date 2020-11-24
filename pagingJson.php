@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>pagingJSON</title>
+        <title>pagingJSON z mysql</title>
         <meta name="description" content="#"/>
         <meta name="keywords" content="#"/>
         
@@ -13,7 +13,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js" type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js'></script>
-        <script type="text/javascript" src="lista.json"></script>
         
     </head>
     
@@ -48,7 +47,7 @@
                 console.log(users);
                 
                 for (let i = 0; i < users.length; i++) {
-                    $('#table').append('<tr><td>'+users[i].id+'</td><td>'+users[i].name+'</td><td>'+users[i].email+'</td></tr>'); 
+                    $('#table').append('<tr><td>'+users[i].ID+'</td><td>'+users[i].names+'</td><td>'+users[i].email+'</td></tr>'); 
                 };
                 
                 $('#table').DataTable( {

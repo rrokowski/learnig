@@ -10,11 +10,15 @@
     }
 
     //pobranie danych z tabeli users
-    $sql = "SELECT * FROM users";
-    $result = mysqli_query($conn, $sql);
+    $sql = mysqli_query($conn, "SELECT * FROM users");
+    $myObj = array();
     
-    while ($data = mysqli_fetch_row($result)) {
-        print_r($data);
-    };
+    while ($rowUser = mysqli_fetch_assoc($sql)) 
+         $myObj[] = $rowUser;
+         //print_r($myObj);
     
+    //zapisanie danych jako json     
+    $myJSON = json_encode($myObj);
+    echo($myJSON);
+    die();
 ?>
