@@ -1,15 +1,20 @@
 <?php
-    require_once 'vendor/autoload.php';
+    //połączenie z mysql
+    $host = 'localhost';
+    $user = 'root';
+    $pass = 'mysql';
+    $db = 'lista';
+    $conn = mysqli_connect($host, $user, $pass, $db);
+    if (!$conn) {
+        die ("bląd połączenia" .mysqli_connect_error());
+    }
 
-    $faker = Faker\Factory::create();
+    //pobranie danych z tabeli users
+    $sql = "SELECT * FROM users";
+    $result = mysqli_query($conn, $sql);
     
-    $myObj = array();
-    for ($i = 0; $i < 50; $i++) {
-        $myObj[] = ['id'=>$faker->unique()->numberBetween(1,1000), 'name'=>$faker->name, 'email'=>$faker->email];         
+    while ($data = mysqli_fetch_row($result)) {
+        print_r($data);
     };
-
-    $myJSON = json_encode($myObj);
-    echo($myJSON);
-    die();
-    //file_put_contents('lista.json', $myJSON);
+    
 ?>
