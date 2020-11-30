@@ -47,7 +47,7 @@
                 console.log(users);
                 
                 for (let i = 0; i < users.length; i++) {
-                    $('#table').append('<tr><td>'+users[i].ID+'</td><td>'+users[i].names+'</td><td>'+users[i].email+'</td></tr>'); 
+                    $('#table').append('<tr><td>'+users[i].ID+'</td><td>'+users[i].name+'</td><td>'+users[i].email+'</td></tr>'); 
                 };
                 
                 $('#table').DataTable( {
