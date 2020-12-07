@@ -11,12 +11,10 @@ if (!$conn) {
 
 //pobranie danych z tabeli users
 $sql = mysqli_query($conn, "SELECT * FROM users");
-$myObj = array();
 
-while ($rowUser = mysqli_fetch_assoc($sql)) {
-    $myObj[] = $rowUser;
-}
-//print_r($myObj);
+$myObj = mysqli_fetch_all($sql);
 
 //zapisanie danych jako json
-die(json_encode($myObj));
+die(json_encode([
+    'data' => $myObj
+]));

@@ -33,27 +33,10 @@
         
         <script>
             
-        $(document).ready(function loadUsers() {
-            let xhr = new XMLHttpRequest();
-
-            // OPEN - call type, url/file, sync/async
-            xhr.open('GET', "lista.php", true);
-
-            //SEND
-            xhr.send(); 
-
-            xhr.onload = function(){
-                let users = JSON.parse(this.response);
-                console.log(users);
-                
-                for (let i = 0; i < users.length; i++) {
-                    $('#table').append('<tr><td>'+users[i].ID+'</td><td>'+users[i].name+'</td><td>'+users[i].email+'</td></tr>'); 
-                };
-                
-                $('#table').DataTable( {
-                    "lengthChange": false,
-                });
-            };
+        $(document).ready(function() {
+            $('#table').DataTable( {
+                "ajax": 'lista.php'
+            });
         });    
         </script>
     </body>
