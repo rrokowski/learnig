@@ -32,12 +32,14 @@
         </div>
         
         <script>
-            
-        $(document).ready(function() {
-            $('#table').DataTable( {
-                "ajax": 'lista.php'
-            });
-        });    
+            $(document).ready(function() {
+                $('#table').DataTable( {
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": "lista.php"
+                });
+            });    
+        
         </script>
     </body>
 </html>

@@ -1,20 +1,23 @@
 <?php
-//połączenie z mysql
-$host = 'localhost';
-$user = 'root';
-$pass = 'mysql';
-$db = 'lista';
-$conn = mysqli_connect($host, $user, $pass, $db);
-if (!$conn) {
-    die ("bląd połączenia" . mysqli_connect_error());
-}
+    $table = 'users';
+    $primaryKey = 'id';
+    
+    $columns = array(
+        array( 'db' => 'id', 'dt' => 0 ),
+        array( 'db' => 'name',  'dt' => 1 ),
+        array( 'db' => 'email',   'dt' => 2 ),
+    );
+    
+    $sql_details = array(
+    'host' => 'localhost',
+    'user' => 'root',
+    'pass' => 'mysql',
+    'db' => 'lista',
+    );
 
-//pobranie danych z tabeli users
-$sql = mysqli_query($conn, "SELECT * FROM users");
-
-$myObj = mysqli_fetch_all($sql);
-
-//zapisanie danych jako json
-die(json_encode([
-    'data' => $myObj
-]));
+    require('ssp.class.php');
+ 
+    echo json_encode(
+        SSP::simple( $_GET, $sql_details, $table, $primaryKey, $columns )
+    );
+?>
