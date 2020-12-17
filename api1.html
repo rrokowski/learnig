@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>API#1</title>
+    <meta name="description" content="#">
+    <meta name="keywords" content="#">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+</head>
+
+<body>
+    <p>Bitcoin Price Index</p>
+    <input type="text" id="startDate" placeholder="start date">
+    <input type="text" id="endDate" placeholder="end date">
+    <button id="button" type="submit">go</button>
+
+    <div id="result"></div>
+    <br>
+    <a href="https://www.coindesk.com/price/bitcoin">Powered by CoinDesk</a>
+</body>
+
+<script>
+    $(function () {
+        $("#startDate").datepicker({
+            dateFormat: 'yy-mm-dd'
+        });
+        $("#endDate").datepicker({
+            dateFormat: 'yy-mm-dd'
+        });
+
+
+        $('#button').on('click', function loadData() {
+            let sDate = $('#startDate').val();
+            let eDate = $('#endDate').val()
+            let baseURL = "https://api.coindesk.com/v1/bpi/historical/close.json?"
+            let URL = baseURL + "start=" + sDate + "&end=" + eDate;
+
+            if (sDate === "" || eDate === "" || eDate < sDate) {
+                alert("please enter dates correctly");
+            } else {
+                $.ajax({
+                    type: 'GET',
+                    dataType: 'json',
+                    url: URL,
+                    success: function (data) {
+                        let items = [];
+                        $.each(data.bpi, function (key, val) {
+                            items.push("<li>day: " + key + " price: " + val +" USD</li>")
+                        });
+
+                        $('#result').append(items);
+                    },
+                    
+                    error: function (e) {
+                        console.log(e);
+                    },
+                });
+            };
+        });
+    });
+</script>
+
+</html>
