@@ -39,7 +39,7 @@
             if ($("#startDate").val() != "" && $("#endDate").val() != "" && $("#startDate").val() <= $(
                     "#endDate").val()) {
                 $("#button").prop("disabled", false)
-                $("#button").off().on('click', sendDates);
+                $("#button").off('click').on('click', sendDates);
             };
         });
 
