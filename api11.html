@@ -39,7 +39,7 @@
             if ($("#startDate").val() != "" && $("#endDate").val() != "" && $("#startDate").val() <= $(
                     "#endDate").val()) {
                 $("#button").prop("disabled", false)
-                $("#button").on('click', sendDates);
+                $("#button").off().on('click', sendDates);
             };
         });
 
@@ -47,20 +47,28 @@
             $.ajax({
                 type: 'POST',
                 url: '/API1/api11.php',
-                dataType: 'text',
+                dataType: 'json',
                 async: true,
                 data: {
                     startDate: $("#startDate").val(),
                     endDate: $("#endDate").val()
                 },
-                success: function (result) {
-                    //alert(result);
-                    makeCall();
-                }
+                success: function (data) {
+                    //alert(data);
+                    //makeCall();
+                    let items = [];
+                    $.each(data.bpi, function (key, val) {
+                        items.push("<li>day: " + key + " price: " + val + " USD</li>")
+                    });
+                    $('#result').empty().append(items);
+                },
+                error: function (e) {
+                    console.log(e);
+                },
             });
         };
 
-        function makeCall() {
+        /*function makeCall() {
             $.ajax({
                 type: 'GET',
                 url: '/API1/data1.json',
@@ -76,7 +84,7 @@
                     console.log(e);
                 },
             });
-        };
+        };*/
     </script>
 </body>
 
